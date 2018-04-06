@@ -6,6 +6,7 @@ variable user      { }
 
 resource "aws_iam_role" "batch_job_role" {
   name = "batch_ecs_role-${var.user}"
+  path = "/cl/app/wosdataconv/"
   assume_role_policy = <<EOF
 {
   "Version": "2008-10-17",
@@ -35,6 +36,7 @@ resource  "aws_iam_role_policy_attachment" "ECS_S3_read_only" {
 
 resource "aws_iam_role" "ecs_execution_role" {
   name = "ecs_execution_role-${var.user}"
+  path = "/cl/app/wosdataconv/"
   assume_role_policy = <<EOF
 {
   "Version": "2008-10-17",

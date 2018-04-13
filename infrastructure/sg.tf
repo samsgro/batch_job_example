@@ -1,5 +1,5 @@
 resource "aws_security_group" "infra_batch" {
-  name        = "infra_batch"
+  name        = "infra_batch-${var.user}"
   description = "security group for batch service"
   vpc_id      = "${data.aws_vpc.vpc.id}"
 

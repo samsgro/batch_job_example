@@ -1,24 +1,27 @@
-resource "aws_security_group" "infra_batch" {
-  name        = "infra_batch-${var.user}"
-  description = "security group for batch service"
-  vpc_id      = "${data.aws_vpc.vpc.id}"
 
-  ingress {
-    from_port = 22
-    to_port   = 22
-    protocol  = "tcp"
+module "batch-security-group" {
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "1.9.0"
+  name = "batch_wos_sg-${var.user}"
+  vpc_id = "${data.aws_vpc.vpc.id}"
 
-    security_groups = [
-      "${data.aws_security_group.infra_bastion.id}",
-    ]
-  }
+  ingress_with_source_security_group_id = [
+    {
+      from_port                = 22
+      to_port                  = 22
+      protocol                 = "tcp"
+      description              = "SSH access through bastion"
+      source_security_group_id = "${data.aws_security_group.infra_bastion.id}"
+    },
+  ]
 
-  egress {
-    from_port       = 0
-    to_port         = 65535
-    protocol        = "tcp"
-    cidr_blocks     = ["0.0.0.0/0"]
-  }
+  egress_with_cidr_blocks = [
+    {
+      rule = "all-all"
+      description = "Allow outgoing"
+      cidr_blocks = "0.0.0.0/0"
+    }
+  ]
 }
 
 data "aws_security_group" "infra_bastion" {

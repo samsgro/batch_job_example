@@ -1,9 +1,17 @@
+###########################################################################################
+#   USING TERRAFORM MODULE REGISTRY FOR SG                                                #
+#   https://registry.terraform.io/modules/terraform-aws-modules/security-group/aws/1.9.0  #
+#                                                                                         #
+#   INBOUND RULE: SSH BATCH INSTANCES THROUGH BASTION                                     #
+#   OUTBOUND RULE: ALL TRAFFIC ALLOWED                                                    #
+###########################################################################################
 
 module "batch-security-group" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "1.9.0"
-  name = "batch_wos_sg-${var.user}"
-  vpc_id = "${data.aws_vpc.vpc.id}"
+  name    = "${var.role}_${var.app}_${var.region}_${var.env}-${var.user}"
+  vpc_id  = "${data.aws_vpc.vpc.id}"
+  tags    = "${module.tags.tags_merged}"
 
   ingress_with_source_security_group_id = [
     {

@@ -1,6 +1,4 @@
-// 
 
-variable vpc_name    { }
 
 data "aws_vpc" "vpc" {
 filter {

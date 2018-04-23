@@ -5,7 +5,7 @@
 // Role that will be assumed by instance managed by the batch service
 
 resource "aws_iam_role" "batch_instance_role" {
-  name = "${var.role}_${var.app}_${var.env}-${var.user}_instance-role"
+  name = "${var.role}_${var.app}_${var.env}-${var.user}_InstanceRole"
   path = "/cl/app/wosdataconv/"
 
   assume_role_policy = <<EOF
@@ -77,7 +77,7 @@ data "template_file" "batch_service_policy_template"{
 
 resource "aws_iam_role" "aws_batch_service_role" {
  path = "/cl/app/wosdataconv/"
- name = "${var.role}_${var.app}_${var.env}-${var.user}_BatchServiceRole"
+ name = "${var.role}_${var.app}_${var.env}-${var.user}_ExecutionRole"
  assume_role_policy = <<EOF
 {
    "Version": "2012-10-17",

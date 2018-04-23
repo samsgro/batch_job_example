@@ -2,17 +2,12 @@
 #        CREATES THE ROLE NEEDED FOR ECS            #
 #####################################################
 
-variable user                            { }
-variable ecs_instance_policy_tmpl        { }
-variable s3_readonly_access_policy_tmpl  { }
-variable batch_service_policy_tmpl       { }
-
-
 // Role that will be assumed by instance managed by the batch service
 
 resource "aws_iam_role" "batch_instance_role" {
-  name = "batch_instance_role-${var.user}"
+  name = "${var.role}_${var.app}_${var.env}-${var.user}_InstanceRole"
   path = "/cl/app/wosdataconv/"
+
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -43,7 +38,7 @@ data "template_file" "S3_readonly_access_policy_template" {
 }
 
 resource "aws_iam_policy" "ECS_instance_policy" {
-  name        = "ECSInstancePolicy-${var.user}"
+  name        = "${var.role}_${var.app}_${var.env}-${var.user}_ECSInstancePolicy"
   path        = "/cl/app/wosdataconv/"
   description = "Policy for ECS instances"
   
@@ -51,7 +46,7 @@ resource "aws_iam_policy" "ECS_instance_policy" {
 }
 
 resource "aws_iam_policy" "s3_readonly_policy" {
-  name        = "S3ReadOnlyAccessPolicy-${var.user}"
+  name        = "${var.role}_${var.app}_${var.env}-${var.user}_S3ReadOnlyAccessPolicy"
   path        = "/cl/app/wosdataconv/"
   description = "Policy for s3 read only access"
   
@@ -72,7 +67,7 @@ resource  "aws_iam_role_policy_attachment" "ECS_S3_read_only" {
 
 resource "aws_iam_instance_profile" "instance_role" {
  path = "/cl/app/wosdataconv/"
- name = "BatchInstanceProfileRole-${var.user}"
+ name = "${var.role}_${var.app}_${var.env}-${var.user}_BatchInstanceProfileRole"
  role = "${aws_iam_role.batch_instance_role.name}"
 }
 
@@ -82,7 +77,7 @@ data "template_file" "batch_service_policy_template"{
 
 resource "aws_iam_role" "aws_batch_service_role" {
  path = "/cl/app/wosdataconv/"
- name = "BatchServiceRole-${var.user}"
+ name = "${var.role}_${var.app}_${var.env}-${var.user}_ExecutionRole"
  assume_role_policy = <<EOF
 {
    "Version": "2012-10-17",
@@ -100,7 +95,7 @@ EOF
 }
 
 resource "aws_iam_policy" "batch_service_policy" {
-  name        = "BatchServicePolicy-${var.user}"
+  name        = "${var.role}_${var.app}_${var.env}-${var.user}_BatchServicePolicy"
   path        = "/cl/app/wosdataconv/"
   description = "Policy for s3 read only access"
   

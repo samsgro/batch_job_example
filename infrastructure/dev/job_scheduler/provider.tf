@@ -3,7 +3,7 @@
 ##################################################
 
 provider "aws" {
-  region    = "${var.region}"
+  region    = "${var.aws-region}"
   profile   = "wos-${var.env}"
 }
 

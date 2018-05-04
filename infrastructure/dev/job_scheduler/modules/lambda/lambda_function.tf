@@ -4,8 +4,7 @@
 
 variable "zip_file"          { }
 variable "app-name"          { }
-variable "role"              { }
-#variable "lambda_role_arn"  { }
+
 variable "handler"           { }
 variable "runtime"           { }
 
@@ -15,6 +14,8 @@ variable "source_id"         { }
 variable "filter_prefix"     { }
 variable "filter_suffix"     { }
 variable "events"            { }
+
+variable "role"              { }
 
 
 # Creates lambda function with a zip file containing code  

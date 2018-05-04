@@ -4,3 +4,5 @@
 **/.terraform
 **/build*.env
 **/errored.tfstate
+**/lib
+**/*.zip

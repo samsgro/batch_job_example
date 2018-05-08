@@ -52,7 +52,7 @@ module "lambda_function" {
 
   events        = "s3:ObjectCreated:*"
   filter_prefix = "${var.snapshots_key}${var.job_input}/"
-  filter_suffix = "csv"
+  filter_suffix = "zip"
 }
 
 output "lambda_function_arn" { value = "${module.lambda_function.lambda_function_arn}" }

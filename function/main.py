@@ -3,7 +3,7 @@ import boto3
 def entrypoint(event, context):
   client = boto3.client('batch', 'us-west-2')
   response = client.submit_job(
-      jobName='test-lambda',
+      jobName='lambda-unzip2s3',
       jobQueue='batch-wos-job-queue-u6047692',
       arrayProperties={
           'size': 10
@@ -20,15 +20,19 @@ def entrypoint(event, context):
 #      },
       containerOverrides={
           'vcpus': 1,
-          'memory': 4,
+          'memory': 512,
           'command': [
-              'ls',
-#          ],
-#          'environment': [
-#              {
-#                  'name': 'string',
-#                  'value': 'string'
-#              },
+              './unzip2s3.sh',
+         ],
+          'environment': [
+              {
+                  'name': 'BUCKET',
+                  'value': 'clarivate.wos.dev.us-west-2.build-tools'
+              },
+              {
+                  'name': 'KEY',
+                  'value': 'artifacts/snapshots/job_input/batch_job_scheduler.zip'
+              }
           ]
       },
       retryStrategy={

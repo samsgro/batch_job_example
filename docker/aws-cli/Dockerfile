@@ -3,8 +3,8 @@ FROM ubuntu
 LABEL "maintainer_name"="Berenice Venegas Cotero" \
       "maintainer_email"="berenice.cotero@clarivate.com"
 
-ENV BUCKET clarivate.wos.dev.us-west-2.build-tools
-ENV KEY artifacts/snapshots/job_input/batch_job_scheduler.zip
+#ENV BUCKET clarivate.wos.dev.us-west-2.build-tools
+#ENV KEY artifacts/snapshots/job_input/batch_job_scheduler.zip
 ENV PREFIX_OUTPUT artifacts/snapshots/job_output
 
 RUN apt-get update && \

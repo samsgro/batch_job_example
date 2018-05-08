@@ -38,10 +38,23 @@ resource "aws_batch_job_definition" "hello_world" {
   container_properties = <<CONTAINER_PROPERTIES
 {
   "command":["ls"],
-  "image": "${data.aws_ecr_repository.hello_world_repo.repository_url}",
+  "image": "${data.aws_ecr_repository.unzip_repo.repository_url}",
   "memory": 512,
   "vcpus": 1
 }
 CONTAINER_PROPERTIES
 }
+
+#resource "aws_batch_job_definition" "hello_world" {
+#  name = "batch_wos_job_definition"
+#  type = "container"
+#  container_properties = <<CONTAINER_PROPERTIES
+#{
+#  "command":["ls"],
+#  "image": "${data.aws_ecr_repository.hello_world_repo.repository_url}",
+#  "memory": 512,
+#  "vcpus": 1
+#}
+#CONTAINER_PROPERTIES
+#}
 

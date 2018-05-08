@@ -2,9 +2,6 @@
 
 #!/bin/bash
 
-
-BUCKET=$1
-KEY=$2
 echo $BUCKET/$KEY
 export PATH=/root/.local/bin/:$PATH
 
@@ -27,6 +24,6 @@ ls -la $DIRNAME
 
 # Upload extract into s3 key for outpupt
 
-/root/.local/bin/aws s3 cp --recursive ./$DIRNAME/ s3://$BUCKET/artifacts/snapshots/job_output/$DIRNAME/
+/root/.local/bin/aws s3 cp --recursive ./$DIRNAME/ s3://$BUCKET/$PREFIX_OUTPUT/$DIRNAME/
 
 

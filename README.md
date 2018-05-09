@@ -1,1 +1,1 @@
-![alt text](batch-service-diagram/batch-service-diagram.png "Description goes here")
+![alt text](batch-service-diagram.png "Description goes here")

@@ -43,4 +43,7 @@ Now let's upload the image to the ECR repository:
 * ```docker tag <ecr_unzip_name>:latest <ecr_unzip_repository_url>:latest```
 * ```docker push <ecr_unzip_repository_url>:latest```
 
+Go to AWS console and find all the resources deployed, also check the ECS cluster that is deploy and that will be used by the batch service, and there will be one instance associated to the ECS and batch service.
+
+Now upload to s3 the zip file you created for lambda as a test file, and check the batch service dash board and the jobs that are schedule. Additional EC2 instances will be created. Also check the logs to see the output of the jobs that have run.
 

@@ -25,7 +25,15 @@ Follow this steps to deploy resources manually:
 * ```cd ../batch_service```
 * ```terraform plan``` and ```terraform apply```
 
-* ```cd ../job_scheduler```
+Create the zip package for the lambda function:
+* ```cd ../../../function```
+* ```mkdir lib```
+* ```pip install -r requirements.txt -t ./lib/```
+* ```cd lib``` and ```zip -r ../batch_job_scheduler.zip *```
+* ```cd ..``` and ```zip -9 batch_job_scheduler.zip ./main.py```
+
+Deploy the lambda scheduler:
+* ```cd ../infrstructure/dev/job_scheduler```
 * ```terraform plan``` and ```terraform apply```
 
 Now let's upload the image to the ECR repository: 

@@ -7,7 +7,6 @@ if [ "$?" -eq 1 ]; then
    echo "Docker is not installed...installing"
    sudo yum update -y
    sudo yum install -y docker
-   sudo service docker start
    echo ""
    echo "Docker has been installed"
 fi

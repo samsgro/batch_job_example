@@ -6,13 +6,15 @@ pipeline {
     
   }
   stages {
-    stage('step1') {
+    stage('build') {
       steps {
-        sh 'echo "hello World"'
+        sh 'echo $USER'
+        sh 'aws --version'
+        sh 'ls -la'
       }
     }
   }
   environment {
-    foo = 'bar'
+    USER = 'jenkins'
   }
 }

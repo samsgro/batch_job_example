@@ -12,7 +12,7 @@ pipeline {
         sh 'echo $USER'
         sh 'aws --version'
         sh 'sh ./scripts/install_docker.sh'
-        sh 'docker info'
+        sh 'sudo docker info'
       }
     }
   }

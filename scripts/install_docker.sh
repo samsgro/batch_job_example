@@ -3,7 +3,7 @@
 echo "Checking that docker is installed"
 which docker
 
-if [ $? ==1 ]; then
+if [ "$?" == 1 ]; then
    echo "Docker is not installed...installing"
    sudo yum update -y
    sudo yum install -y docker
@@ -12,11 +12,9 @@ if [ $? ==1 ]; then
    echo "Docker has been installed"
 fi
 
-if [ (sudo service docker status) == "docker is stopped" ]; then
+if [ "$(sudo service docker status)" == "docker is stopped" ]; then
    echo "Starting Docker service..."
    sudo service docker start
 fi
-
-sudo usermod -a -G docker ec2-user
 
 echo "Consummatum est..."

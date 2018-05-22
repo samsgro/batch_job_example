@@ -14,12 +14,12 @@ pipeline {
         sh 'sh ./scripts/install_docker.sh'
         sh 'sudo docker info'
         sh 'sh ./scripts/install_terraform.sh'
+        sh 'terraform --version'
       }
     }
     stage('test deployment') {
       steps {
-        sh 'cd infrastructure/dev/global'
-        sh 'ls -la'
+        sh 'sh ./scripts/deploy_global_infra.sh'
       }
     }
   }

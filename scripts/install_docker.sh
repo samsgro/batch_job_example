@@ -3,7 +3,7 @@
 echo "Checking that docker is installed"
 which docker
 
-if [ "$?" == 1 ]; then
+if [ "$?" -eq 1 ]; then
    echo "Docker is not installed...installing"
    sudo yum update -y
    sudo yum install -y docker

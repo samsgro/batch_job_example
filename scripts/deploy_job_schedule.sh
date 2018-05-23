@@ -1,8 +1,18 @@
 #!/bin/bash
 
-echo "DEPLOYING THE GLOBAL INFRASTRUCTURE"
+echo "DEPLOYING THE BATCH SERVICE INFRASTRUCTURE"
+echo ""
+echo "CREATING LAMBDA ZIP PACKAGE"
 
-cd infrastructure/dev/global
+cd function
+mkdir lib
+pip install -r requirements.txt -t ./lib/
+cd lib and zip -r ../batch_job_scheduler.zip *
+cd .. and zip -9 batch_job_scheduler.zip ./main.py
+
+echo "RUN TERRAFORM"
+
+cd ../infrstructure/dev/job_scheduler
 
 echo "INITIALIZING TERRAFORM"
 terraform init

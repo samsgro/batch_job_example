@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "DEPLOYING THE GLOBAL INFRASTRUCTURE"
+echo "DEPLOYING THE BATCH SERVICE INFRASTRUCTURE"
 
-cd infrastructure/dev/global
+cd infrastructure/dev/batch_service
 
 echo "INITIALIZING TERRAFORM"
 terraform init

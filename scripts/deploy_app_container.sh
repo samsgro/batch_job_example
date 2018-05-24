@@ -1,7 +1,8 @@
 #!/bin/bash
 
 cd docker/fn-unzip2s3
-eval $(aws ecr get-login --no-include-email --region us-west-2 --profile wos-dev | sed 's|https://||')
+eval $(aws ecr get-login --no-include-email --region us-west-2 | sed 's|https://||')
+printenv
 
 echo "BUILDING IMAGE AND PUSHING IT TO ECR REPOSITORY"
 

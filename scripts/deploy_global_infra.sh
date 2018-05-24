@@ -28,5 +28,9 @@ fi
 rm -rf terraformplan.out
 
 # EXPORT THE ECR REPO NAME AND URL
+export ECR_REPO_NAME=$(terraform output ecr_unzip_name)
+export ECR_REPO_URL=$(terraform output ecr_unzip_repository_url)
+
+printenv
 
 echo "Consumatum est..."

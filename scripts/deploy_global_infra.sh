@@ -27,4 +27,6 @@ fi
 
 rm -rf terraformplan.out
 
+# EXPORT THE ECR REPO NAME AND URL
+
 echo "Consumatum est..."

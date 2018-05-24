@@ -14,7 +14,7 @@ fi
 echo "CREATING INFRASTRUCTURE DEPLOYMENT PLAN"
 terraform plan -out terraformplan.out
 
-if [ "$?" -ne 0] ; then
+if [ "$?" -ne 0 ]; then
    exit 1
 fi
 
